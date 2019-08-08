@@ -13,7 +13,9 @@ server.get("/", (req, res) => {
       res.status(200).json({ success: true, response });
       //   console.log(response);
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      res.status(400).json({ success: false, err });
+    });
 });
 
 server.get("/:id", (req, res) => {
@@ -35,7 +37,22 @@ server.post("/", (req, res) => {
     .then(response => {
       res.status(201).json({ success: true, response });
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      res.status(400).json({ success: false, err });
+    });
+});
+
+server.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const newInfo = req.body;
+  accountsDB
+    .update(id, newInfo)
+    .then(response => {
+      res.status(201).json({ success: true, response });
+    })
+    .catch(err => {
+      res.status(400).json({ success: false, err });
+    });
 });
 
 module.exports = server;
