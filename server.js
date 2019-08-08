@@ -55,4 +55,16 @@ server.put("/:id", (req, res) => {
     });
 });
 
+server.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  accountsDB
+    .remove(id)
+    .then(response => {
+      res.status(204);
+    })
+    .catch(err => {
+      res.status(400).json({ success: false, err });
+    });
+});
+
 module.exports = server;
