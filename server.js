@@ -60,7 +60,7 @@ server.delete("/:id", (req, res) => {
   accountsDB
     .remove(id)
     .then(response => {
-      res.status(204);
+      res.status(204).json({ success: true, response });
     })
     .catch(err => {
       res.status(400).json({ success: false, err });

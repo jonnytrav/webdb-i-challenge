@@ -8,6 +8,8 @@ module.exports = {
   remove
 };
 
+//SELECT * FROM accounts//
+
 function find() {
   return db("accounts");
 }
